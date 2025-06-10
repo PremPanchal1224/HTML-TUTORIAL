@@ -1,0 +1,15 @@
+header li{
+    list-style-type: none;
+    display : inline-block;
+    text-transform: uppercase;
+    border-bottom: 2px solid black;
+    padding: 5px 10px;
+
+}
+header{
+    background-color: grey;
+    margin: 20px;
+    text-align: center;
+    padding: 5px;
+
+}

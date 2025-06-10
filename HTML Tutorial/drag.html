@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple HTML5 Form</title>
+</head>
+<body>
+    <h2>Simple Form with File Upload</h2>
+    <form id="form">
+        <!-- Text Field -->
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <!-- Radio Buttons -->
+        <label>Gender:</label>
+        <input type="radio" id="male" name="gender" value="male" required>
+        <label for="male">Male</label>
+
+        <input type="radio" id="female" name="gender" value="female" required>
+        <label for="female">Female</label><br><br>
+
+        <!-- Drag-and-Drop File Upload -->
+        <label>Upload File:</label> 
+        <div id="dropZone" style="border: 1px dashed black; padding: 10px;">
+            Drag & drop a file here or click
+            <input type="file" id="file" name="file" style="display: none;" required>
+        </div>
+        <p id="fileName"></p><br>
+
+        <!-- Submit Button -->
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('file');
+        const fileName = document.getElementById('fileName');
+
+        // Drag and drop functionality
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.style.background = '#f0f0f0';
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.style.background = '';
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.style.background = '';
+            const files = e.dataTransfer.files;
+            if (files.length) {
+                fileInput.files = files;
+                fileName.textContent = `File: ${files[0].name}`;
+            }
+        });
+
+        dropZone.addEventListener('click', () => fileInput.click());
+
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length) {
+                fileName.textContent = `File: ${fileInput.files[0].name}`;
+            }
+        });
+    </script>
+</body>
+</html>

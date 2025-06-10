@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Validation</title>
+</head>
+<body>
+    <form id="form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="Enter your username" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter your password" required><br><br>
+
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" placeholder="Re-enter your password" required><br><br>
+
+        <label for="contactNo">Contact No.:</label>
+        <input type="text" id="contactNo" placeholder="Enter your contact number" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" placeholder="Enter your email" required><br><br>
+
+        <input type="button" value="Submit" onclick="validate()">
+    </form>
+
+    <script>
+        function validate() {
+            var username = document.getElementById("username").value.trim();
+            var password = document.getElementById("password").value.trim();
+            var confirmPassword = document.getElementById("confirmPassword").value.trim();
+            var contactNo = document.getElementById("contactNo").value.trim();
+            var email = document.getElementById("email").value.trim();
+
+            // Check if any field is empty
+            if (!username || !password || !confirmPassword || !contactNo || !email) {
+                alert("All fields are required.");
+                return;
+            }
+
+            // Username validation
+            if (username.length < 10) {
+                alert("Username must be at least 10 characters.");
+                return;
+            }
+
+            // Password validation
+            var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            if (!passwordRegex.test(password)) {
+                alert("Password must have 1 uppercase, 1 lowercase, 1 digit, 1 special character, and be at least 8 characters long.");
+                return;
+            }
+
+            // Confirm Password validation
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return;
+            }
+
+            // Contact No. validation
+            var contactNoRegex = /^\d{10}$/;
+            if (!contactNoRegex.test(contactNo)) {
+                alert("Contact No. must be exactly 10 digits.");
+                return;
+            }
+
+            // Email validation
+            var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address.");
+                return;
+            }
+
+            alert("Form submitted successfully!");
+        }
+    </script>
+</body>
+</html>
