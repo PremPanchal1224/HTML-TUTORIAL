@@ -18,11 +18,6 @@ Feel free to explore or use these files for practice or reference.
 - Embedding media (videos, audio)
 - Basic page layout using HTML
 
-## 🛠 Files Included
 
-- `index.html` — A sample homepage
-- `about.html` — Practice with text and images
-- `contact.html` — Form example
-- Other example files for different tags and layouts
 
 
